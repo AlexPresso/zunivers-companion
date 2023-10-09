@@ -1,5 +1,7 @@
-pub mod widgets;
 pub mod widget;
+pub mod widgets;
+
+pub mod zunivers;
 
 #[cfg(test)]
 mod tests {

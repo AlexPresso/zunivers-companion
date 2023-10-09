@@ -26,12 +26,12 @@ fn init_widgets() {
 }
 
 #[tauri::command]
-fn get_widgets() -> Result<Vec<WidgetMetadata>, String> {
+fn get_widgets() -> Result<Vec<Box<WidgetMetadata>>, String> {
     let widgets = get_widgets_map();
-    let mut widgets_metadata: Vec<WidgetMetadata> = Vec::new();
+    let mut widgets_metadata: Vec<Box<WidgetMetadata>> = Vec::new();
 
     for widget in widgets.values() {
-        widgets_metadata.push(widget.metadata());
+        widgets_metadata.push(Box::new(widget.metadata()));
     }
 
     Ok(widgets_metadata)
