@@ -22,6 +22,6 @@ pub trait Widget: Any + Send + Sync {
     fn on_widget_load(&self) {}
     fn on_widget_unload(&self) {}
 
-    fn call_fn(&self, name: String) {}
+    fn on_event(&self, name: String, data: String) {}
     fn render(&self) -> String;
 }

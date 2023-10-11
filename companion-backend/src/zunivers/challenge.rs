@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Challenge {
     pub id: String,
     pub challenge_type: Type,
@@ -10,19 +10,19 @@ pub struct Challenge {
     pub description: String
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Progress {
     pub progress_type: String,
     pub current: u16,
     pub max: u16
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Log {
     pub id: String
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub enum Type {
     FUSE,
     INVOKE,

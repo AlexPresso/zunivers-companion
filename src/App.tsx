@@ -1,12 +1,19 @@
 import {useEffect, useState} from "react";
 import {invoke} from "@tauri-apps/api/tauri";
-import JsxParser from "react-jsx-parser";
+import {emit} from "@tauri-apps/api/event";
 import WidgetComponent from "./components/WidgetComponent.tsx";
 
 function App() {
     const [ widgets, setWidgets ] = useState<Widget[]>([])
     const [ currWidgetIdx, setCurrWidgetIdx ] = useState(0);
     const [ currRender, setCurrRender ] = useState("");
+
+    //@ts-ignore
+    window.emitEvent = (widgetName, event, data) => emit('widget_event', {
+        widget: widgetName,
+        name: event,
+        data: data
+    });
 
     useEffect(() => {
         loadWidgets();
@@ -42,15 +49,7 @@ function App() {
                     )}
                 </ul>
             </nav>
-            <main className={"content"}>
-                {currRender ?
-                    // @ts-ignore
-                    <JsxParser
-                        autoCloseVoidElements={true}
-                        jsx={currRender}
-                    /> : <></>
-                }
-            </main>
+            <main className={"content"} dangerouslySetInnerHTML={{__html: currRender}} />
         </div>
     );
 }
