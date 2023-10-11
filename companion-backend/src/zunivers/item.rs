@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Detail {
     pub counting: bool,
     pub craftable: bool,
@@ -10,24 +10,24 @@ pub struct Detail {
     pub upgradable: bool
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct EvolutionDetail {
     pub owned: bool,
     pub item: Item
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Item {
     pub id: String,
     pub pack: Pack
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Fusion {
 
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Pack {
     pub name: String
 }

@@ -11,7 +11,22 @@ impl Widget for NinjaWidget {
         }
     }
 
+    fn on_event(&self, name: String, data: String) {
+        match name.as_str() {
+            "advise" => self.advise(data),
+            _ => {}
+        }
+    }
+
     fn render(&self) -> String {
-        format!("Hello render {}", &self.metadata().name)
+        "<button onclick=\"emitEvent('Ninja', 'advise', 'alexpresso')\">\
+            Recevoir des conseils
+        </button>".to_string()
+    }
+}
+
+impl NinjaWidget {
+    fn advise(&self, discord_username: String) {
+        println!("{}", discord_username);
     }
 }
